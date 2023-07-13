@@ -1,7 +1,10 @@
 import { useState } from "react"
 import { IProduct } from "../../interfaces/IProduct"
 
-export default function ProductTable() {
+interface props{
+    biluteteia: (product: IProduct) => void
+}
+export default function ProductTable({biluteteia}:props) {
     const ApiData: Array<IProduct> = [
         {
             id: 1,
@@ -29,16 +32,18 @@ export default function ProductTable() {
         const newData = data.filter(_data => _data.id != id)
         setData(newData)
     }
+
     
     return (
         <div>
             <ul>
                 {
-                    data.map(data => {
+                    data.map(_data => {
                         return (
                             <li>
-                                <span>{data.name} - {data.quantity}</span>
-                                <button onClick={() => deleteProduct(data.id)}>Del</button>
+                                <span>{_data.name} - {_data.quantity}</span>
+                                <button onClick={() => deleteProduct(_data.id)}>Del</button>
+                                <button onClick={() => biluteteia(_data)}>Edit</button>
                             </li>
                         )
                     })

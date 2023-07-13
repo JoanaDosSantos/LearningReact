@@ -1,0 +1,16 @@
+.mainContent{
+    background-color: lightgray;
+    height: inherit;
+    display: flex;
+    width: inherit;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1, section{
+        display: flex;
+        align-items: center;
+    }
+    h1{ height: 10%;}
+    section{ height: 90%;}
+}
