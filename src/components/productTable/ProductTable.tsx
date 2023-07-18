@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { IProduct } from "../../interfaces/IProduct"
+import { HiMiniTrash, HiPencil } from "react-icons/hi2";
+import styles from "./ProductTable.module.scss";
 
-interface props{
+interface props {
     biluteteia: (product: IProduct) => void
 }
-export default function ProductTable({biluteteia}:props) {
+export default function ProductTable({ biluteteia }: props) {
     const ApiData: Array<IProduct> = [
         {
             id: 1,
@@ -33,17 +35,26 @@ export default function ProductTable({biluteteia}:props) {
         setData(newData)
     }
 
-    
+
     return (
-        <div>
+        <div className={styles.tableContent}>
             <ul>
+                <li className={styles.tableHeader}>
+                    <span>Nome</span>
+                    <span>Quantidade</span>
+                    <span>Preço</span>
+                    <span>Editar</span>
+                    <span>Excluir</span>
+                </li>
                 {
-                    data.map(_data => {
+                    data.map((_data) => {
                         return (
                             <li>
-                                <span>{_data.name} - {_data.quantity}</span>
-                                <button onClick={() => deleteProduct(_data.id)}>Del</button>
-                                <button onClick={() => biluteteia(_data)}>Edit</button>
+                                <span>{_data.name}</span>
+                                <span>{_data.quantity}</span>
+                                <span>{_data.price}</span>
+                                <button onClick={() => biluteteia(_data)}><HiPencil /></button>
+                                <button onClick={() => deleteProduct(_data.id)}><HiMiniTrash color="white" /></button>
                             </li>
                         )
                     })
