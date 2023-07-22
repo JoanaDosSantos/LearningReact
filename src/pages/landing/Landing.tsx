@@ -3,6 +3,7 @@ import FormProduct from "../../components/formProduct/FormProduct";
 import ProductTable from "../../components/productTable/ProductTable";
 import { IProduct } from "../../interfaces/IProduct";
 import styles from "./Landing.module.scss";
+import { HiPlus } from "react-icons/hi2";
 
 export default function LandingPage() {
     const [showModal, setShowModal] = useState<boolean>(false)
@@ -19,15 +20,19 @@ export default function LandingPage() {
                 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wdth,wght,YTLC@6..12,96.1,252,466&display=swap');
             </style>
             <h1>Meu estoque</h1>
-                <h3>Lista</h3>
-            <section>
-                <ProductTable biluteteia={updateProduct} />
-            </section>
-            {
-                showModal && product != null
-                    ? <FormProduct product={product} />
-                    : null
-            }
+            <h3>Lista</h3>
+            <div className={styles.addProductButton}>
+                <button><HiPlus />Adicionar</button>
+            </div>
+            <div className={styles.tableProducts}>
+                <section>
+                    {
+                        showModal && product != null
+                            ? <FormProduct product={product} />
+                            : <ProductTable biluteteia={updateProduct} />
+                    }
+                </section>
+            </div>
         </main>
     )
 }
